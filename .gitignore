@@ -25,6 +25,7 @@ out/
 /nbdist/
 /.nb-gradle/
 
+
 ### VS Code ###
 .vscode/
 
@@ -36,6 +37,8 @@ out/
 *.zip
 *.tar.gz
 *.rar
+/data/
+
 
 ### Exclusions ###
 !./gradle/wrapper/gradle-wrapper.jar

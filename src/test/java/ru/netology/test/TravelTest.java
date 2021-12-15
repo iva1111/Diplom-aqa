@@ -5,16 +5,16 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import ru.netology.data.DataGeneration;
 import ru.netology.data.DbUtils;
-import ru.netology.page.StartPage;
-import ru.netology.data.Card;
 import ru.netology.page.BuyPage;
+import ru.netology.data.Card;
+import ru.netology.page.StartPage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TravelTest {
-    BuyPage buyPage = new BuyPage();
-    StartPage startPage = new StartPage();
+    StartPage buyPage = new StartPage();
+    BuyPage startPage = new BuyPage();
 
     @BeforeAll
     static void setUpAll() {
