@@ -7,9 +7,15 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class StartPage {
     private final SelenideElement buyButton = $$("button").findBy(Condition.text("Купить"));
+    private final SelenideElement buttonBuyByCredit = $$("button").findBy(Condition.text("Купить в кредит"));
 
-    public BuyPage buy() {
+    public StartPage buy() {
         buyButton.click();
-        return new BuyPage();
+        return new StartPage();
+    }
+
+    public StartPage buyCredit() {
+        buttonBuyByCredit.click();
+        return new StartPage();
     }
 }

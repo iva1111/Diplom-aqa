@@ -1,6 +1,6 @@
-FROM node:alpine AS base
+FROM node:alpine
 WORKDIR /opt/app
 COPY . .
-RUN npm audit fix && npm install
+RUN npm install
 CMD ["npm", "start"]
 EXPOSE 9999

@@ -13,14 +13,14 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class BuyPage {
-    private SelenideElement heading = $$("h3").findBy(text("Оплата по карте"));
+public class CreditPage {
+    private SelenideElement heading = $$("h3").findBy(Condition.text("Кредит по данным карты"));
     private SelenideElement cardField = $("input[placeholder='0000 0000 0000 0000']");
     private SelenideElement monthField = $("input[placeholder='08']");
     private SelenideElement yearField = $("input[placeholder='22']");
     private SelenideElement holderField = $(byText("Владелец")).parent().$(".input__control");
     private SelenideElement cvcField = $("input[placeholder='999']");
-    private SelenideElement continueButton = $$("button").findBy(text("Продолжить"));
+    private SelenideElement continueButton = $$("button").findBy(Condition.text("Продолжить"));
 
     private SelenideElement buttonBuyCard = $$("button").findBy(text("Купить"));
     private SelenideElement buttonBuyByCredit = $$("button").findBy(text("Купить в кредит"));
@@ -62,3 +62,5 @@ public class BuyPage {
         $$(".input__sub").shouldHave(CollectionCondition.size(5)).shouldHave(CollectionCondition.texts("Поле обязательно для заполнения"));
     }
 }
+
+
