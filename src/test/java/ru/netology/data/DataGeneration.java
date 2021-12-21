@@ -5,7 +5,7 @@ import com.github.javafaker.service.FakeValuesService;
 import com.github.javafaker.service.RandomService;
 
 import java.time.LocalDate;
-import java.time.Year;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class DataGeneration {
@@ -38,7 +38,7 @@ public class DataGeneration {
     }
 
     public static String getYear() {
-        return String.format("%ty", Year.now());
+        return LocalDate.now().plusYears(2).format(DateTimeFormatter.ofPattern("yy"));
     }
 
     public static String getLastYear() {

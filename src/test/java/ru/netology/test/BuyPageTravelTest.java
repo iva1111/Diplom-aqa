@@ -36,6 +36,14 @@ public class BuyPageTravelTest {
         startPage.buy();
     }
 
+    // Переключение между вкладками Купить и Купить в кредит
+    @Test
+    void shouldCheckTransitionToCard() {
+        var startPage = new StartPage();
+        var creditPage = startPage.buyCredit();
+        var buyPage = creditPage.transitionToCard();
+        buyPage.transitionToCredit();
+    }
 
     // успешная покупка одобренной картой
     @Test
@@ -43,7 +51,7 @@ public class BuyPageTravelTest {
         Card card = new Card(DataGeneration.getApprovedNumber(), DataGeneration.getMonth(), DataGeneration.getYear(), DataGeneration.getValidName(), DataGeneration.getValidCvc());
         buyPage.inputData(card);
         buyPage.checkSuccessNotification();
-        assertEquals("APPROVED", DbUtils.getPaymentStatus());
+        assertEquals("APPROVED", DbUtils.getOrderStatus());
     }
 
     // не успешная покупка отклонненной картой
@@ -52,18 +60,8 @@ public class BuyPageTravelTest {
         Card card = new Card(DataGeneration.getDeclinedNumber(), DataGeneration.getMonth(), DataGeneration.getYear(), DataGeneration.getValidName(), DataGeneration.getValidCvc());
         buyPage.inputData(card);
         buyPage.checkDeclineNotification();
-        assertEquals("DECLINED", DbUtils.getPaymentStatus());
+        assertEquals("DECLINED", DbUtils.getOrderStatus());
     }
-
-    // не успешная покупка одобренной картой
-    @Test
-    public void shouldNonBuySuccessApprovedCard() {
-        Card card = new Card(DataGeneration.getApprovedNumber(), DataGeneration.getMonth(), DataGeneration.getYear(), DataGeneration.getValidName(), DataGeneration.getValidCvc());
-        buyPage.inputData(card);
-        buyPage.checkSuccessNotification();
-        assertEquals("APPROVED", DbUtils.getPaymentStatus());
-    }
-
 
     // Ввести номер несуществующей карты (короткий 4444)
     @Test

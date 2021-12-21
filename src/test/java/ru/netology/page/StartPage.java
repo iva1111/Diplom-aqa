@@ -9,13 +9,14 @@ public class StartPage {
     private final SelenideElement buyButton = $$("button").findBy(Condition.text("Купить"));
     private final SelenideElement buttonBuyByCredit = $$("button").findBy(Condition.text("Купить в кредит"));
 
-    public StartPage buy() {
+
+    public BuyPage buy() {
         buyButton.click();
-        return new StartPage();
+        return new BuyPage();
     }
 
-    public StartPage buyCredit() {
+    public CreditPage buyCredit() {
         buttonBuyByCredit.click();
-        return new StartPage();
+        return new CreditPage();
     }
 }

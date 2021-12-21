@@ -11,6 +11,7 @@ public class DbUtils {
     public static void clearTables() {
         var cleanPaymentEntity = "DELETE FROM payment_entity";
         var cleanOrderEntity = "DELETE FROM order_entity";
+        var cleanCreditEntity = "DELETE FROM credit_request_entity";
         var runner = new QueryRunner();
 
         try (
@@ -19,13 +20,24 @@ public class DbUtils {
         ) {
             runner.update(conn, cleanPaymentEntity);
             runner.update(conn, cleanOrderEntity);
+            runner.update(conn, cleanCreditEntity);
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
     }
 
-    public static String getPaymentStatus() {
-        var statusSQL = "SELECT status FROM payment_entity";
+    public static String getOrderStatus() {
+        var statusSQL = "SELECT status FROM order_entity";
+        try {
+            return getStatus(statusSQL);
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        }
+        return statusSQL;
+    }
+
+    public static String getCreditStatus() {
+        var statusSQL = "SELECT status FROM credit_entity";
         try {
             return getStatus(statusSQL);
         } catch (SQLException sqlException) {

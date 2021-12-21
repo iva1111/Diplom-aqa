@@ -2,7 +2,6 @@ package ru.netology.page;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.Card;
 
@@ -14,7 +13,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class BuyPage {
-    private SelenideElement heading = $$("h3").findBy(text("Оплата по карте"));
+
     private SelenideElement cardField = $("input[placeholder='0000 0000 0000 0000']");
     private SelenideElement monthField = $("input[placeholder='08']");
     private SelenideElement yearField = $("input[placeholder='22']");
@@ -22,12 +21,13 @@ public class BuyPage {
     private SelenideElement cvcField = $("input[placeholder='999']");
     private SelenideElement continueButton = $$("button").findBy(text("Продолжить"));
 
-    private SelenideElement buttonBuyCard = $$("button").findBy(text("Купить"));
     private SelenideElement buttonBuyByCredit = $$("button").findBy(text("Купить в кредит"));
- //   private SelenideElement buttonCard = $$("button").findBy(text("Продолжить"));
 
-    private ElementsCollection operationMessage = $$(".notification__content");
-    private SelenideElement errorMessage = $(".input__sub");
+    public CreditPage transitionToCredit() {
+        buttonBuyByCredit.click();
+        $$(".heading").findBy(text("Кредит по данным карты")).shouldBe(visible);
+        return new CreditPage();
+    }
 
     public void inputData(Card card) {
         cardField.setValue(card.getNumber());
