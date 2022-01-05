@@ -51,7 +51,7 @@ public class CreditPageTravelTest {
         Card card = new Card(DataGeneration.getApprovedNumber(), DataGeneration.getMonth(), DataGeneration.getYear(), DataGeneration.getValidName(), DataGeneration.getValidCvc());
         creditPage.inputData(card);
         creditPage.checkSuccessNotification();
-        assertEquals("APPROVED", DbUtils.getOrderStatus());
+        assertEquals("APPROVED", DbUtils.getCreditStatus());
     }
 
     // не успешная покупка отклонненной картой
